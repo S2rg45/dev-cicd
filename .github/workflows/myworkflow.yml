@@ -1,0 +1,27 @@
+name: Deploy-Infra
+on: [push]
+jobs:
+  deploy-infra:
+  runs-on: ubuntu-latest
+  defaults:
+    run:
+      shell: bash
+  env: 
+    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  steps:
+    - name: Checkout-code
+      uses: actions/checkout@v3
+    - name: Initialize
+      run: |
+        terraform init
+    - name: Validation
+      run: |
+        terraform fmt
+        terraform validate
+    - name: Plan Creation
+      run: |
+        terraform plan -out=tfplan
+    - name: Apply
+      run: |
+        terraform apply tfplan
