@@ -6,7 +6,10 @@ node ("ec2"){
 		userRemoteConfigs: [[credentialsId: 'cdffa240-45c6-4d63-b071-47a3eb6c756f', 
 		url: 'https://github.com/cloudcampla/proyecto-bootcamp-devops']]])
 	} 
-	stage("terraform-init"){
-			sh "terraform init -backend-config=backend.conf"
+	dir("iac/terraform"){
+		sh "pwd"
+		stage("terraform-init"){
+				sh "terraform init -backend-config=backend.conf"
+		}
 	}
 }
