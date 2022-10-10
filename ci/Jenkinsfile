@@ -4,7 +4,7 @@ node ("ec2"){
 		branches: [[name: '*/main']], 
 		extensions: [], 
 		userRemoteConfigs: [[credentialsId: 'cdffa240-45c6-4d63-b071-47a3eb6c756f', 
-		url: 'https://github.com/S2rg45/dev-cicd']]])
+		url: 'https://github.com/cloudcampla/proyecto-bootcamp-devops']]])
 	} 
 	stage("terraform-init"){
 			sh "terraform init -backend-config=backend.conf"
